@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -43,7 +43,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function me(Request $request)
+    public function userProfile(Request $request)
     {
         return response()->json($request->user());
     }

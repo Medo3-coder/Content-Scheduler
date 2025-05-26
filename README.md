@@ -1,61 +1,212 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Content Scheduler
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A full-stack application for scheduling and managing social media content across multiple platforms.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 🔐 User Authentication (Login/Register)
+- 📝 Create and Schedule Posts
+- 🔄 Multiple Platform Integration
+- 📊 Analytics Dashboard
+- ⚙️ Platform Settings Management
+- 📋 Activity Logs
+- 🎯 Post Management
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Frontend
+- React.js
+- React Router for navigation
+- React Bootstrap for UI components
+- Axios for API requests
+- Context API for state management
 
-## Learning Laravel
+### Backend
+- Laravel PHP Framework
+- MySQL Database
+- RESTful API Architecture
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Before you begin, ensure you have the following installed:
+- Node.js (v14 or higher)
+- PHP (v8.0 or higher)
+- Composer
+- MySQL
+- Git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+### Backend Setup
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd content-scheduler
+```
 
-### Premium Partners
+2. Install PHP dependencies:
+```bash
+composer install
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. Create and configure your `.env` file:
+```bash
+cp .env.example .env
+```
+
+4. Generate application key:
+```bash
+php artisan key:generate
+```
+
+5. Configure your database in `.env`:
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=content_scheduler
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+6. Run migrations:
+```bash
+php artisan migrate
+```
+
+7. Start the Laravel development server:
+```bash
+php artisan serve
+```
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+```bash
+cd content-ui
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create `.env` file:
+```bash
+cp .env.example .env
+```
+
+4. Configure your API URL in `.env`:
+```
+VITE_API_URL=http://localhost:8000/api
+```
+
+5. Start the development server:
+```bash
+npm run dev
+```
+
+## Usage
+
+1. Access the application at `http://localhost:3000`
+2. Register a new account or login with existing credentials
+3. Navigate through the application using the top navigation bar
+4. Create and schedule posts using the Create Post form
+5. Manage your platforms in the Settings section
+6. View analytics and activity logs
+
+## Project Structure
+
+```
+content-scheduler/
+├── app/                    # Laravel backend
+│   ├── Http/              # Controllers and Middleware
+│   ├── Models/            # Database Models
+│   └── Services/          # Business Logic
+├── content-ui/            # React frontend
+│   ├── src/
+│   │   ├── components/    # React Components
+│   │   ├── api/          # API Integration
+│   │   └── router.jsx    # Route Configuration
+└── database/             # Database Migrations
+```
+
+## API Endpoints
+
+### Authentication
+- POST `/api/login` - User login
+- POST `/api/register` - User registration
+- POST `/api/logout` - User logout
+
+### Posts
+- GET `/api/posts` - List all posts
+- POST `/api/posts` - Create new post
+- GET `/api/posts/{id}` - Get post details
+- PUT `/api/posts/{id}` - Update post
+- DELETE `/api/posts/{id}` - Delete post
+
+### Platforms
+- GET `/api/platforms` - List all platforms
+- POST `/api/platforms` - Add new platform
+- PUT `/api/platforms/{id}` - Update platform
+- DELETE `/api/platforms/{id}` - Delete platform
+
+## Development
+
+### Running Tests
+```bash
+# Backend tests
+php artisan test
+
+# Frontend tests
+npm test
+```
+
+### Code Style
+```bash
+# Backend
+composer run lint
+
+# Frontend
+npm run lint
+```
+
+## Deployment
+
+1. Build the frontend:
+```bash
+cd content-ui
+npm run build
+```
+
+2. Configure your production environment variables
+3. Set up your web server (Apache/Nginx)
+4. Deploy the Laravel application
+5. Configure SSL certificates
+6. Set up database backups
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Code of Conduct
+## Security
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- All API endpoints are protected with authentication
+- Passwords are hashed using bcrypt
+- CSRF protection enabled
+- Input validation on all forms
+- XSS protection
+- Rate limiting on API endpoints
 
-## Security Vulnerabilities
+## Support
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+For support, email support@contentscheduler.com or create an issue in the repository.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License - see the LICENSE file for details.

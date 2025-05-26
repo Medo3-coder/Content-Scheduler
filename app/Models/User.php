@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -24,16 +23,51 @@ class User extends Authenticatable
         'password',
     ];
 
-    // Posts
+    /**
+     * Get all posts created by the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
 
-    // Logs
+    /**
+     * Get all activity logs associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function logs()
     {
         return $this->hasMany(ActivityLog::class);
+    }
+
+    /**
+     * Get the user's active social media platforms.
+     * This relationship returns only platforms where the user has active=true in the pivot table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function activePlatforms()
+    {
+        return $this->belongsToMany(Platform::class, 'user_platform')
+            ->withPivot('active')
+            ->wherePivot('active', true)
+            ->withTimestamps();
+    }
+
+    /**
+     * Get all social media platforms associated with the user, regardless of their active status.
+     * This relationship includes the active status in the pivot table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function allPlatforms()
+    {
+        return $this->belongsToMany(Platform::class, 'user_platform')
+            ->withPivot('active')
+            ->withTimestamps();
     }
 
     /**
@@ -53,7 +87,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password'          => 'hashed',
     ];
 
     /**
