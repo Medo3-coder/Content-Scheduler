@@ -72,7 +72,7 @@ DB_PASSWORD=your_password
 
 6. Run migrations:
 ```bash
-php artisan migrate
+php artisan migrate fresh --seed
 ```
 
 7. Start the Laravel development server:
