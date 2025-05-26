@@ -203,10 +203,3 @@ npm run build
 - XSS protection
 - Rate limiting on API endpoints
 
-## Support
-
-For support, email support@contentscheduler.com or create an issue in the repository.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
