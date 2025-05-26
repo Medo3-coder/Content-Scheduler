@@ -133,6 +133,7 @@ content-scheduler/
 ```
 
 ## API Endpoints
+- postman collection : https://api.postman.com/collections/8195041-366b838d-038e-4e05-806a-d1499884af28?access_key=PMAT-01JW5XPFRDTBKXNMMKD1ME5BKG
 
 ### Authentication
 - POST `/api/login` - User login
